@@ -83,6 +83,7 @@ hr{
 }
 
 /* Main */
+#__next{width:100%}
 body{
     background-color: var(--lt);
     width: var(--vw);
