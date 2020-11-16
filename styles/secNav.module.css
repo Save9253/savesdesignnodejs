@@ -1,0 +1,83 @@
+/* Side Navigation */
+.secWNav{
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    width: var(--vw);
+}
+
+.secWNav section{grid-column: 2/3;}
+.secNav{
+    transition:ease 1s;
+    margin-left: -195px;
+    grid-column: 1/2;
+    position: sticky;
+    height: fit-content;
+    top:70px;
+    grid-row: auto;
+    width:230px;
+    display: flex;
+    flex-direction: row-reverse;
+    z-index: 3;
+    border-radius: 2px;
+    border-style:solid;
+    border-width: 1px 1px 1px 0;
+    border-color: var(--md);
+    background-color: var(--md);
+}
+.secNavMoved{
+    margin-left: 0px !important;
+    border-color: var(--ac) !important;
+}
+.secNavBtn{
+    padding:0;
+    margin-right: 3px;
+}
+.secNavBtn svg path{
+    stroke:var(--ac);
+    stroke-width:2px;
+}
+.secNavBtn:focus svg path{
+    stroke:white;
+}
+.secNav ul{
+    width:220px;
+    color:var(--aclt);
+    display: flex;
+    flex-direction: column;
+}
+
+.secNav a{
+    line-height: 1.2em;
+    margin: 5px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.secNav span{
+    text-align: right;
+    width:160px
+}
+.secNav a:hover,.secNav a:focus{color:white !important;}
+.secNav a:hover svg,.secNav a:focus svg{fill:white !important;}
+
+.secNav ul svg{
+    margin: 0 7px 0 10px;
+    fill:var(--ac);
+    width:8px;
+    height:8px;
+}
+.linkToTop{
+    border-bottom: solid 1px;
+    padding-bottom: 5px;
+}
+.linkToEnd{
+    border-top: solid 1px;
+    padding-top: 5px;
+}
+.linkToTop svg,.linkToEnd svg{
+    width:10px;
+    height:10px;
+}
+
+.focusSecA{color:var(--lt) !important;}
+.focusSecA svg{fill:var(--lt) !important;}

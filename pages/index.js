@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import HomeCSS from '../styles/Home.module.css'
+import SideNavCSS from '../styles/secNav.module.css'
 import Link from 'next/link'
 import { useState, useEffect } from 'react';
 
@@ -33,7 +34,7 @@ export default function Home() {
         <title>How to build a website?</title>
         <link rel="icon" href="/SavesDesignFavicon.png" />
       </Head>
-      <section aria-label="How to build a website?" className={styles.intro}>
+      <section aria-label="How to build a website?" className={HomeCSS.intro}>
         <h1>How to build a website?</h1>
         <div>
           <p>Nowadays, a website is a very important part of a business's image. It is often the first impression your customers get, and we all know how important it is to make the inf right first impression. </p>
@@ -43,25 +44,42 @@ export default function Home() {
         </div>
         <img src="/howToBuildAWebsite.svg" alt="Building a website"/>
       </section>
-      <section aria-label="Compare the two ways" className={`${styles.compare} ${styles.secWNav}`}>
-        <section aria-label="Finding a domain" className={styles.topS}>
+      <section aria-label="Compare the two ways" className={`${HomeCSS.compare} ${SideNavCSS.secWNav}`}>
+        <nav aria-label="Page" className={SideNavCSS.secNav}>
+          <button aria-expanded="false" aria-controls="secNav" aria-label="Expand Page Navigation" type="button"  className={`${SideNavCSS.secNavBtn} icon`}>
+            <svg role="img" aria-label="Arrow" overflow="visible" width="10" fill="none" height="40" viewBox="0 0 10 40" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinejoin="round" strokeLinecap="round" d="M5 0L5 20L5 40"/>
+            </svg>
+          </button>
+          <ul>
+            <li>
+              <a href='#' className={SideNavCSS.linkToTop}>
+                <span>To the top</span>
+                <svg role="img" aria-label="Arrow Up" viewBox="0 0 10 5" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 5L5 0L10 5Z"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <section aria-label="Finding a domain" className={HomeCSS.topS}>
           <h2>Finding a domain</h2>
-          <div className={styles.redStrip}>
-            <svg role="img" className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+            <svg role="img" className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Finding a domain on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Finding a domain on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
             <h3>on your own</h3>
             <img src="/findingDomainOnYourOwn.svg" alt="Finding a domain on your own"/>
             <p>You will have to compare among at least a dozen of domain providers to compare their prices. Knowing what is going to be the best option for you isn't an easy task considering all of their deceiving strategies. Most of the companies who sell domains show a lower than average price for the first year while hiding a smaller price tag for the next year renewal somewhere in a corner. Plus, how do you know what will work best for you? Would .org, .com, .online, or something else be the best choice?</p>
           </div>
-          <div className={styles.greenStrip}>
-            <svg role="img" className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+            <svg role="img" className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>     
           </div>
-          <div aria-label="Finding a domain with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Finding a domain with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
               <h3>with Save</h3>
               <img src="/findingADomainWithSave.svg" alt="Finding a domain with Save"/>
               <p>I'll direct you through the process of finding the best domain for your website from the best trusted source.</p>
@@ -69,22 +87,22 @@ export default function Home() {
         </section>
         <section aria-label="Hosting a website">
           <h2>Hosting a website</h2>
-          <div className={styles.redStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Hosting a website on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Hosting a website on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
               <h3>on your own</h3>
               <img src="/hostingAWebsiteOnYourOwn.svg" alt="Hosting a website on your own"/>
               <p>Hosting a website is a pretty similar process to finding a reliable and trustworthy domain provider. So, it can be pretty hard. Some hosting companies like to show their price lower than anyone else's, even if it involves showing only part of the actual price. Moreover, you will be able to get such a price only if you pay for the whole year in advance. </p>
           </div>
-          <div className={styles.greenStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Hosting a website with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Hosting a website with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
               <h3>with Save</h3>
               <img src="/hostingAWebsiteWithSave.svg" alt="Hosting a website with Save"/>
               <p>No hosting companies will be involved and no extra money will be paid. It will be solely your website and a Google Server at truly the lowest price for hosting. You can choose to pay monthly or annually, with no additional charge for monthly payments. </p>
@@ -92,22 +110,22 @@ export default function Home() {
         </section>
         <section aria-label="Content Management System">
           <h2>Content Management System</h2>
-          <div className={styles.redStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Content Management System on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Content Management System on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
             <h3>on your own</h3>
             <img src="otherContentManagementSystems.svg" alt="Other Content Management Systems"/>
             <p>Content Management Systems (CMS) are designed to meet the needs of everyone, even though everyone has very different needs. So, be ready to deal with an overwhelming amount of settings and buttons that you might not even need. Even with all those tools, you will still have to add some code to make things look or function exactly the way you want. Moreover, every CMS that is designed for all possible needs has a really long code to do so. Using all the unnecessary code slows down your website and, in turn, makes you rate lower on Google.</p>
           </div>
-          <div className={styles.greenStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Content Management System with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Content Management System with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
             <h3>with Save</h3>
             <img src="SavesContentManagementSystems.svg" alt="Save's Content Management Systems"/>
             <p>Honestly, not everyone even needs a Content Management System. And if you do need one, it should be designed for your specific needs. Such CMS will make it easier for you to manage your content and it will make your site load faster which, consequently, will positively affect your ranking on Google.</p>
@@ -115,45 +133,45 @@ export default function Home() {
         </section>
         <section aria-label="Layout">
           <h2>Layout</h2>
-          <div className={styles.redStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Layout on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Layout on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
               <h3>on your own</h3>
               <img src="/layoutWithContentManagementSystems.svg" alt="Layout with Content Management Systems"/>
               <p>Content Management Systems usually have free templates available. Nevertheless, the options are usually pretty limited.  So, if you do want an impressive and unique layout that fits your needs perfectly, be ready to pay extra. The most popular scenario is using WordPress with Divi theme which will cost you at least $70 extra a year.</p>
           </div>
-          <div className={styles.greenStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Layout with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Layout with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
               <h3>with Save</h3>
               <img src="/layoutWithSave.svg" alt="Layout with Save"/>
-              <p>There are no limits on how the layout can look. I will build a special design just for you and your needs. I'll create your website according to your preferred styles. Or, if you don't have a particular style in mind, I'll gladly compose one for you! </p>
+              <p>There are no limits on how the layout can look. I will build a special design just for you and your needs. I'll create your website according to your preferred HomeCSS. Or, if you don't have a particular style in mind, I'll gladly compose one for you! </p>
           </div>
         </section>
         <section aria-label="Mobile Compatibility">
           <h2>Mobile Compatibility</h2>
-          <div className={styles.redStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Mobile Compatibility on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Mobile Compatibility on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
               <h3>on your own</h3>
               <img src="/mobileCompatibilityOnYourOwn.svg" alt="Mobile compatibility on your own"/>
               <p>Once you make sure that your website looks the way you want it to on a desktop, you will have check how it looks on a phone and a tablet. I have to warn you that it will probably not look the way you expect it to. You will have to spend some extra time adding more styling for different screen sizes to make it look nice on mobile devices as well.</p>
           </div>
-          <div className={styles.greenStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Mobile Compatibility with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Mobile Compatibility with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
               <h3>with Save</h3>
               <img src="/mobileCompatibilityWithSave.svg" alt="Mobile compatibility with Save"/>
               <p>I will test the appearance of your website on a wide screen, big screen, small screen, tablet, and phone to make sure the visitors will have the best experience, whichever device they may use.</p>
@@ -161,22 +179,22 @@ export default function Home() {
         </section>
         <section aria-label="Functionality">
           <h2>Functionality</h2>
-          <div className={styles.redStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Functionality on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Functionality on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
               <h3>on your own</h3>
               <img src="/FunctionalityWithCMS.svg" alt="Functionality with CMS"/>
               <p>Functionality is also often limited to just a few common templates. On WordPress, for example, only a blog is free. But if you want a store, you will have to get an extra plugin. If you want a form, you will have to get an extra plugin. Every plugin will ask you to pay extra for their services. Even worse, every plugin will slow down your website more and more.</p>
           </div>
-          <div className={styles.greenStrip}>
-              <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+              <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
               </svg>
             </div>
-          <div aria-label="Functionality with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Functionality with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
               <h3>with Save</h3>
               <img src="/FunctionalityWithSave.svg" alt="Functionality with Save"/>
               <p>I will bring to reality any functionality you may need with as little code as possible to ensure the best performance. </p>
@@ -184,67 +202,67 @@ export default function Home() {
         </section>
         <section aria-label="Accessibility">
           <h2>Accessibility</h2>
-          <div className={styles.redStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Accessibility on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Accessibility on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
               <h3>on your own</h3>
               <img src="/AccessibilityOnYourOwn.svg" alt="Accessibility on your own"/>
               <p>Accessibility is what often gets inf left out. When people make websites on their own, they usually make it possible to navigate only visually, using the mouse or, at the most, a touch screen.</p>
           </div>
-          <div className={styles.greenStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Accessibility with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Accessibility with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
             <h3>with Save</h3>
             <img src="/AccessibilityWithSave.svg" alt="Accessibility with Save"/>
             <p>I will make sure that your website is navigable by keyboard with a screen reader, as well as visually navigable with mouse and touch. It will make your website accessible to a larger audience and it may improve your ranking on Google as well.</p>
         </div>
         </section>
-        <section aria-label="Search Engine Optimization" className={styles.bottS}>
+        <section aria-label="Search Engine Optimization" className={HomeCSS.bottS}>
           <h2>Search Engine Optimization</h2>
-          <div className={styles.redStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.redStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Search Engine Optimization on your own" className={`${styles.inf} ${styles.left} ${styles.bad}`}>
+          <div aria-label="Search Engine Optimization on your own" className={`${HomeCSS.inf} ${HomeCSS.left} ${HomeCSS.bad}`}>
             <h3>on your own</h3>
             <img src="/SearchEngineOptimizationOnYourOwn.svg" alt="Search Engine Optimization on your own"/>
             <p>First, you will have to deal with Google Search Console to just appear on Google. Then, you will still have to make sure that every piece of information on your website is helping you to rank higher on Google and not working against you.</p>
           </div>
-          <div className={styles.greenStrip}>
-            <svg className={styles.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.greenStrip}>
+            <svg className={HomeCSS.arrow} viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0L20 10L40 0V10L20 20L0 10Z"/>
             </svg>
           </div>
-          <div aria-label="Search Engine Optimization with Save" className={`${styles.inf} ${styles.right} ${styles.good}`}>
+          <div aria-label="Search Engine Optimization with Save" className={`${HomeCSS.inf} ${HomeCSS.right} ${HomeCSS.good}`}>
             <h3>with Save</h3>
             <img src="/SearchEngineOptimizationWithSave.svg" alt="Search Engine Optimization with Save"/>
             <p>I will make sure you appear on Google and give you all the recommendations on how to rank higher and be found by your customers.</p>
           </div>
         </section>
       </section>
-      <section aria-label="Choice" className={styles.end}>
+      <section aria-label="Choice" className={HomeCSS.end}>
         <section>
           <h2>It is your choice in the end</h2>
-          <div className={styles.leftArr}>
-              <svg className={styles.arrowB} viewBox="0 0 40 30" xmlns="http://www.w3.org/2000/svg">
+          <div className={HomeCSS.leftArr}>
+              <svg className={HomeCSS.arrowB} viewBox="0 0 40 30" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 0H40V20L45 17.5V27.5L20 40L-5 27.5V17.5L0 20Z"/>
               </svg>
           </div>
-          <Link href="/login"><a className={styles.left} id="no"><span>Learn how to make websites <br/><b>on your own!</b></span></a></Link>
-          <div className={styles.rightArr}>
-              <svg className={styles.arrowB} viewBox="0 0 40 30" xmlns="http://www.w3.org/2000/svg">
+          <Link href="/login"><a className={HomeCSS.left} id="no"><span>Learn how to make websites <br/><b>on your own!</b></span></a></Link>
+          <div className={HomeCSS.rightArr}>
+              <svg className={HomeCSS.arrowB} viewBox="0 0 40 30" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 0H40V20L45 17.5V27.5L20 40L-5 27.5V17.5L0 20Z"/>
               </svg>
           </div>
-          <Link href="/shop"><a className={styles.right} id="yes"><span>Make your website <br/><b>with Save!</b></span></a></Link>
-          <svg role="img" aria-label="Save" className={styles.face} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <Link href="/shop"><a className={HomeCSS.right} id="yes"><span>Make your website <br/><b>with Save!</b></span></a></Link>
+          <svg role="img" aria-label="Save" className={HomeCSS.face} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g fill="var(--md50)">
                   <path id="LeyeSh" d="M47.8 91.5L61.7 99.7L66.1 105.2L72.6 111.1L73.3 103.5L71.5 93.3L65.2 91.7L47.8 91.5Z"/>
                   <path id="Rshadow" d="M121.8 51.8L122.8 77L119.6 86.6L117.8 93.7L119.3 103.5L125.9 117.1L126.3 134.7L117.6 159.2L108.9 180.1L109.1 187.2L120.7 171.8L129.3 154.1L135.4 153.5L140.7 144L147.5 124L143.9 109.4L138.4 109.2L132.7 116.9L129.9 88.5L131.2 80.9L131.2 65.9L121.8 51.8Z"/>
