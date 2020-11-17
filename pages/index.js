@@ -60,6 +60,14 @@ const noEx = {
   ReyeB:"M86.1 100.3L90.2 92.7L119.2 86.6L126.1 99.4L117.3 93.6L92.9 97.4L86.1 100.3Z",
   LeyeB:"M30.3 97.9L39.4 85.7L65.2 91.2L71.9 99.1L63.7 96.3L40.4 93.1L30.3 97.9Z",
 }
+const blinkClosed = {
+  Reye:"M104.4 103.7L112.4 102.3L118.5 102.3L111.7 103.6L108.6 104.2L107.9 104.4L104.2 105L100.4 104.2L99.8 104L95.2 103.4L92.6 102.8L94.4 102.6L104.4 103.7Z",
+  Leye:"M54 102.6L61.5 102.0L63.8 102.4L61 102.9L58.2 103.2L57.8 103.3L53.6 103.6L49.2 103L48.7 102.9L45.5 102.4L40.7 101.5L45 101.3L54 102.6Z",
+}
+const blinkOpen = {
+  Reye:"M104.6 97.5L112.5 98.3L118.6 102.4L111.9 100.6L108.8 100.4L108 103.5L104.4 105L100.6 103.4L100 100.4L95.4 101.3L92.8 102.9L94.5 100.3L104.6 97.5Z",
+  Leye:"M54.1 97.3L61.7 99.7L63.9 102.4L61.1 100.6L58.4 100.3L57.9 102.9L53.8 104.4L49.4 102.8L48.9 99.9L45.6 99.8L40.8 101.6L45.2 98.6L54.1 97.3Z",
+}
 
 export default function Home() {
 
@@ -76,6 +84,18 @@ export default function Home() {
     setLeyeB(expression.LeyeB)
   }
   
+  function blink() {
+    if(ReyeOp){setReye(blinkClosed.Reye)}
+    setLeye(blinkClosed.Leye)
+    setTimeout(()=>{
+        if(ReyeOp){setReye(blinkOpen.Reye)}
+        setLeye(blinkOpen.Leye)
+    },300);
+  }
+  setInterval(() => {blink()}, 4000);
+
+  const [ReyeOp,setReyeOp] = useState(true)
+
   const outline = "M9.1 107.3L7.4 61.8L10.2 41.2L14.7 38.1L14.6 31.3L26.2 16.8L41.7 8.2L46.9 8.6L50 4L68.8 1.2L89.2 3.5L94 7.5L96.2 5.6L117.2 12.3L131 28.8L133.4 36.3L136 39.8L141.1 58L142.1 87L138.4 109.2L143.9 109.4L147.5 124L140.7 144L135.4 153.5L129.3 154.1L120.7 171.8L109.1 187.2L91.1 199.9L68.4 201.2L51 189.9L30.2 167.5L22.9 151.7L16.9 152.1L8.4 144.3L1.5 124.3L4.1 109.8L9.1 107.3Z"
   const beard = "M48.6 181.5L51 189.9L68.4 201.2L91.1 199.9L109.1 187.2L108.9 180.1L90 188.2L65.6 189.2L48.6 181.5Z"
   const hair = "M132.7 116.9L129.9 88.5L131.2 80.9L131.2 65.9L119.1 47.6L115.8 31.5L105.9 17.3L112.6 31.4L115.3 46.8L105.7 44.5L98.1 25.2L76.1 13.2L94.3 25.4L102.2 45.3L96.2 44.7L82.1 32.7L54.9 31.9L79.8 34.9L92.1 46L79.7 47.4L65.9 52.8L55.1 60.4L31.9 54.2L21.3 71.4L23 86.4L17.1 100.2L18.7 114.6L9.1 107.3L7.4 61.8L10.2 41.2L14.7 38.1L14.6 31.3L26.2 16.8L41.7 8.2L46.9 8.6L50 4L68.8 1.2L89.2 3.5L94 7.5L96.2 5.6L117.2 12.3L131 28.8L133.4 36.3L136 39.8L141.1 58L142.1 87L138.4 109.2L132.7 116.9Z"
@@ -104,7 +124,7 @@ export default function Home() {
         <link rel="icon" href="/SavesDesignFavicon.png" />
       </Head>
         <section>
-          <svg role="img" aria-label="Save" style={{height:200}} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg onMouseEnter={()=>{expr(yesEx);ReyeOp(false)}} onMouseLeave={()=>{expr(quEx);ReyeOp(true)}} role="img" aria-label="Save" style={{height:200}} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fill="var(--md50)">
               <path d={LeyeSh}/>
               <path d={Rshadow}/>
