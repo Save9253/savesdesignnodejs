@@ -1,0 +1,21 @@
+.linkDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.linkDiv p {
+    margin: 0 2px;
+}
+.linkDiv a{
+    padding: 8px 10px;
+    border-radius: 2px;
+    font-size: 20px;
+    font-family: 'Do Hyeon', sans-serif;
+}
+.linkDiv a:hover{
+    background-color: var(--dr);
+    color:var(--lt);
+}
+.linkDiv a:hover svg,.linkDiv a:focus svg{fill:var(--lt);}
