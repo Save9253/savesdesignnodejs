@@ -81,6 +81,79 @@ const blinkOpen = {
   Leye:"M54.1 97.3L61.7 99.7L63.9 102.4L61.1 100.6L58.4 100.3L57.9 102.9L53.8 104.4L49.4 102.8L48.9 99.9L45.6 99.8L40.8 101.6L45.2 98.6Z",
 }
 
+function findCenter(rect){
+  const x = ((rect.right-rect.left)/2)+rect.left
+  const y = ((rect.bottom-rect.top)/2)+rect.top
+  return ({
+    x:x,
+    y:y
+  })
+} 
+
+function Pos2Pers(center,mX,mY){
+  const width = window.innerWidth
+  const height = window.innerHeight
+  let x;
+  let y;
+  if(mX>center.x){
+    x = (mX-center.x)/(width-center.x)
+  }else{
+    x= (center.x-mX)/center.x*-1
+  }
+  if(mY>center.y){
+    y = (mY-center.y)/(height-center.y)
+  }else{
+    y= (center.y-mY)/center.y*-1
+  }
+  return({x:x,y:y})
+}
+
+function rightEyeMove (move){
+  const moveX = move.x*3
+  const moveY = move.y*2
+  const xs = [104.6,108.8,108,104.4,100.6,100]
+  const ys = [97.5,100.4,100.4]
+  const sys = [103.5,105,103.4]
+  const sys2 = [98.3,100.6,101.3,100.3]
+  for(let i=0;i<xs.length;i++){
+    xs[i] = xs[i] + moveX 
+  }
+  for(let i=0;i<ys.length;i++){
+    ys[i] = ys[i] + moveY 
+  }
+  for(let i=0;i<sys.length;i++){
+    if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
+  }
+  for(let i=0;i<sys2.length;i++){
+    if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
+  }
+  const ReyeD = `M${xs[0]} ${ys[0]}L112.5 ${sys2[0]}L118.6 102.4L111.9 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L95.4 ${sys2[2]}L92.8 102.9L94.5 ${sys2[3]}Z`
+  return(ReyeD)
+}
+
+function leftEyeMove (move){
+  const moveX = move.x*3
+  const moveY = move.y*2
+  const xs = [54.1,58.4,57.9,53.8,49.4,48.9]
+  const ys = [97.3,100.3,99.9]
+  const sys = [102.9,104.4,102.8]
+  const sys2 = [99.7,100.6,99.8,98.6]
+  for(let i=0;i<xs.length;i++){
+    xs[i] = xs[i] + moveX 
+  }
+  for(let i=0;i<ys.length;i++){
+    ys[i] = ys[i] + moveY 
+  }
+  for(let i=0;i<sys.length;i++){
+    if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
+  }
+  for(let i=0;i<sys2.length;i++){
+    if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
+  }
+  const LeyeD = `M${xs[0]} ${ys[0]}L61.7 ${sys2[0]}L63.9 102.4L61.1 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L45.6 ${sys2[2]}L40.8 101.6L45.2 ${sys2[3]}Z`
+  return(LeyeD)
+}
+
 export default function Home() {
 
   function expr(expression){
@@ -106,83 +179,13 @@ export default function Home() {
   }
  
   const[once,setOnce] = useState(true)
+  const[load,setLoad] = useState(true)
 
   if(once){
     setInterval(() => {blink()}, 4000);
     setOnce(false)
   }
-
-  function findCenter(rect){
-    const x = ((rect.right-rect.left)/2)+rect.left
-    const y = ((rect.bottom-rect.top)/2)+rect.top
-    return ({
-      x:x,
-      y:y
-    })
-  } 
   
-  function Pos2Pers(center,mX,mY){
-    const width = window.innerWidth
-    const height = window.innerHeight
-    let x;
-    let y;
-    if(mX>center.x){
-      x = (mX-center.x)/(width-center.x)
-    }else{
-      x= (center.x-mX)/center.x*-1
-    }
-    if(mY>center.y){
-      y = (mY-center.y)/(height-center.y)
-    }else{
-      y= (center.y-mY)/center.y*-1
-    }
-    return({x:x,y:y})
-  }
-
-  function rightEyeMove (move){
-    const moveX = move.x*3
-    const moveY = move.y*2
-    const xs = [104.6,108.8,108,104.4,100.6,100]
-    const ys = [97.5,100.4,100.4]
-    const sys = [103.5,105,103.4]
-    const sys2 = [98.3,100.6,101.3,100.3]
-    for(let i=0;i<xs.length;i++){
-      xs[i] = xs[i] + moveX 
-    }
-    for(let i=0;i<ys.length;i++){
-      ys[i] = ys[i] + moveY 
-    }
-    for(let i=0;i<sys.length;i++){
-      if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
-    }
-    for(let i=0;i<sys2.length;i++){
-      if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
-    }
-    const ReyeD = `M${xs[0]} ${ys[0]}L112.5 ${sys2[0]}L118.6 102.4L111.9 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L95.4 ${sys2[2]}L92.8 102.9L94.5 ${sys2[3]}Z`
-    setReye(ReyeD)
-  }
-  function leftEyeMove (move){
-    const moveX = move.x*3
-    const moveY = move.y*2
-    const xs = [54.1,58.4,57.9,53.8,49.4,48.9]
-    const ys = [97.3,100.3,99.9]
-    const sys = [102.9,104.4,102.8]
-    const sys2 = [99.7,100.6,99.8,98.6]
-    for(let i=0;i<xs.length;i++){
-      xs[i] = xs[i] + moveX 
-    }
-    for(let i=0;i<ys.length;i++){
-      ys[i] = ys[i] + moveY 
-    }
-    for(let i=0;i<sys.length;i++){
-      if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
-    }
-    for(let i=0;i<sys2.length;i++){
-      if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
-    }
-    const LeyeD = `M${xs[0]} ${ys[0]}L61.7 ${sys2[0]}L63.9 102.4L61.1 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L45.6 ${sys2[2]}L40.8 101.6L45.2 ${sys2[3]}Z`
-    setLeye(LeyeD)
-  }
   const [ReyeOp,setReyeOp] = useState(true)
 
   const outline = "M9.1 107.3L7.4 61.8L10.2 41.2L14.7 38.1L14.6 31.3L26.2 16.8L41.7 8.2L46.9 8.6L50 4L68.8 1.2L89.2 3.5L94 7.5L96.2 5.6L117.2 12.3L131 28.8L133.4 36.3L136 39.8L141.1 58L142.1 87L138.4 109.2L143.9 109.4L147.5 124L140.7 144L135.4 153.5L129.3 154.1L120.7 171.8L109.1 187.2L91.1 199.9L68.4 201.2L51 189.9L30.2 167.5L22.9 151.7L16.9 152.1L8.4 144.3L1.5 124.3L4.1 109.8L9.1 107.3Z"
@@ -206,20 +209,23 @@ export default function Home() {
   const size = winWidth();
   if(size != undefined){
     document.documentElement.style.setProperty('--vw',size)
-    const leftEye = document.querySelector('#leftEye')
-    const rightEye = document.querySelector('#rightEye')
-    window.addEventListener('mousemove',(event)=>{
-      if(ReyeOp == true){
-        const mouseX = event.pageX
-        const mouseY = event.pageY
-        const leftEyeC = findCenter(leftEye.getBoundingClientRect())
-        const rightEyeC = findCenter(rightEye.getBoundingClientRect())
-        const moveRightEye = Pos2Pers(rightEyeC,mouseX,mouseY)
-        const moveLeftEye = Pos2Pers(leftEyeC,mouseX,mouseY)
-        leftEyeMove(moveLeftEye)
-        rightEyeMove(moveRightEye)
-      }
-    })
+    if(load){
+      const leftEye = document.querySelector('#leftEye')
+      const rightEye = document.querySelector('#rightEye')
+      window.addEventListener('mousemove',(event)=>{
+        if(ReyeOp == true){
+          const mouseX = event.pageX
+          const mouseY = event.pageY
+          const leftEyeC = findCenter(leftEye.getBoundingClientRect())
+          const rightEyeC = findCenter(rightEye.getBoundingClientRect())
+          const moveRightEye = Pos2Pers(rightEyeC,mouseX,mouseY)
+          const moveLeftEye = Pos2Pers(leftEyeC,mouseX,mouseY)
+          setLeye(leftEyeMove(moveLeftEye))
+          setReye(rightEyeMove(moveRightEye))
+        }
+      })
+      setLoad(false)
+    }
   }
   
   return (
