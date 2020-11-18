@@ -177,24 +177,16 @@ export default function Home() {
   }
   
   function blink() {
-    if(ReyeOp){setReye(blinkClosed.Reye)}
+    setReye(blinkClosed.Reye)
     setLeye(blinkClosed.Leye)
     setTimeout(()=>{
-        if(ReyeOp){setReye(blinkOpen.Reye)}
+        setReye(blinkOpen.Reye)
         setLeye(blinkOpen.Leye)
     },300);
   }
  
-  const[once,setOnce] = useState(true)
   const[load,setLoad] = useState(true)
-
-  if(once){
-    setInterval(() => {blink()}, 4000);
-    setOnce(false)
-  }
-  
-  const [ReyeOp,setReyeOp] = useState(true)
-  
+   
   const [LeyeSh,setLeyeSh] = useState("M40.4 93.1L61.2 99.6L65.7 105.1L73.2 113.2L73.9 105.6L71.9 99.1L63.7 96.3L40.4 93.1Z")
   const [nose,setnose] = useState("M86.1 100.3L92.9 97.4L117.3 93.6L94.1 100.3L88.9 107.6L89.5 122.2L96 129L93.4 138.8L81.3 140.4L75.4 140.3L62.4 137.8L59.9 128.6L63.3 134.4L72.6 132.2L80.1 134.6L86.8 132.2L88.9 126.7L84.8 119.4L84.6 106.6L86.1 100.3Z")
   const [TLip,setTLip] = useState("M54.6 154.4L57.1 153.4L73.7 151.2L76.4 152.5L80.1 151.8L95.7 155.5L98.4 157.2L97.6 158.2L82.7 155.7L76.4 156.4L70.5 155.2L56.6 156.3L54.6 154.4Z")
@@ -227,6 +219,7 @@ export default function Home() {
           setTimeout(()=>{check = true},500)
         }
       })
+      setInterval(() => {blink()}, 4000);
       setLoad(false)
     }
   }
@@ -252,8 +245,8 @@ export default function Home() {
             height:200,
             margin:'0 30px 20px'
           }} 
-          onMouseEnter={()=>{expr(quEx);setReyeOp(false)}}
-          onMouseLeave={()=>{expr(normEx);setReyeOp(true)}}
+          onMouseEnter={()=>{expr(quEx)}}
+          onMouseLeave={()=>{expr(normEx)}}
           role="img" aria-label="Save" viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg"
         >
           <g fill="var(--md50)">
