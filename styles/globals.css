@@ -23,18 +23,23 @@
 h1,h2,#cartText,.num,.num *,.oldPrice,.newPrice,.newPrice *,.discount,.addTCart,.qty{
   font-family: 'Do Hyeon', sans-serif;
 }
-p{text-align:justify}
+p{
+    text-align:justify;
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+}
 h1{
-  margin-block-start: 15px;
-  margin-block-end: 15px;
-}
-h2{
-  margin-block-start: 12px;
-  margin-block-end: 12px;
-}
-h3{
   margin-block-start: 10px;
   margin-block-end: 10px;
+  font-size: 40px;
+}
+h2{
+  margin-block-start: 8px;
+  margin-block-end: 8px;
+}
+h3{
+  margin-block-start: 6px;
+  margin-block-end: 6px;
   font-size: 24px;
 }
 h1,h2,h3{text-align: center;}
@@ -55,7 +60,7 @@ ul{
 hr{
     border:none;
     border-bottom: solid 2px var(--md);
-    margin:20px 2px;
+    margin:15px 2px;
     width: 100%;
 }
 .hrP{

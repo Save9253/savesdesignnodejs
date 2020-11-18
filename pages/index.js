@@ -238,28 +238,57 @@ export default function Home() {
         <link rel="icon" href="/SavesDesignFavicon.png" />
       </Head>
         <section>
-          <svg onMouseEnter={()=>{expr(quEx);setReyeOp(false)}} onMouseLeave={()=>{expr(normEx);setReyeOp(true)}} role="img" aria-label="Save" style={{height:200}} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g fill="var(--md50)">
-              <path d={LeyeSh}/>
-              <path d={Rshadow}/>
-              <path d={Lshadow}/>
-              <path d={nose}/>
-              <path d={TLip}/>
-              <path d={BLip}/>
-            </g>
-            <g fill="var(--dr)">
-              <path d={beard}/>
-              <path d={hair}/>
-              <path d={Lnosed}/>
-              <path d={Rnosed}/>
-              <path id="rightEye" d={Reye}/>
-              <path id="leftEye" d={Leye}/>
-              <path d={mustch}/>
-              <path d={ReyeB}/>
-              <path d={LeyeB}/>
-            </g>
-            <path d={outline} stroke="black" strokeOpacity="0.9" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <h1>Meet Save!</h1>
+          <hr/>
+          <div 
+            style={{
+              display:"flex",
+              flexWrap:'wrap',
+              alignItems:"center",
+              justifyContent:'center'
+            }
+          }>
+            <svg 
+              style={{
+                height:200,
+                margin:'0 30px 20px'
+              }} 
+              onMouseEnter={()=>{expr(quEx);setReyeOp(false)}}
+              onMouseLeave={()=>{expr(normEx);setReyeOp(true)}}
+              role="img" aria-label="Save" viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg"
+            >
+              <g fill="var(--md50)">
+                <path d={LeyeSh}/>
+                <path d={Rshadow}/>
+                <path d={Lshadow}/>
+                <path d={nose}/>
+                <path d={TLip}/>
+                <path d={BLip}/>
+              </g>
+              <g fill="var(--dr)">
+                <path d={beard}/>
+                <path d={hair}/>
+                <path d={Lnosed}/>
+                <path d={Rnosed}/>
+                <path id="rightEye" d={Reye}/>
+                <path id="leftEye" d={Leye}/>
+                <path d={mustch}/>
+                <path d={ReyeB}/>
+                <path d={LeyeB}/>
+              </g>
+              <path d={outline} stroke="black" strokeOpacity="0.9" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <div style={{display:'grid',alignItems:'center'}}>
+              <p>Save is a designer and he designs many things</p>
+              <p>He develops websites and apps</p>
+              <p>He designs logos and icons</p>
+              <p>He even builds furniture!</p>
+              <p><b>Don't you want to work with Save already?!</b></p>
+            </div>
+          </div>
+          <div>
+            <p>Check Save's projects on </p>
+          </div>
         </section>
     </main>
   )
