@@ -271,9 +271,9 @@ export default function Home() {
           <path d={outline} stroke="black" strokeOpacity="0.9" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <div style={{display:'grid',alignItems:'center'}}>
-          <p>Save is a designer and he designs many things</p>
-          <p>He develops websites and apps</p>
-          <p>He designs logos and icons</p>
+          <p>Save is a designer.</p>
+          <p>He develops websites and apps,</p>
+          <p>He designs logos and icons,</p>
           <p>He even builds furniture!</p>
           <p><b>Don't you want to work with Save already?!</b></p>
         </div>
