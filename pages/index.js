@@ -73,8 +73,8 @@ const normEx = {
   LeyeB:"M30.3 97.9L39.4 85.7L65.2 91.2L71.9 99.1L63.7 96.3L40.4 93.1L30.3 97.9Z",
 }
 const blinkClosed = {
-  Reye:"M104.4 103.7L112.4 102.3L118.5 102.3L111.7 103.6L108.6 104.2L107.9 104.4L104.2 105L100.4 104.2L99.8 104L95.2 103.4L92.6 102.8L94.4 102.6L104.4 103.7Z",
-  Leye:"M54 102.6L61.5 102.0L63.8 102.4L61 102.9L58.2 103.2L57.8 103.3L53.6 103.6L49.2 103L48.7 102.9L45.5 102.4L40.7 101.5L45 101.3L54 102.6Z",
+  Reye:"M104.4 103.7L112.4 102.3L118.5 102.3L111.7 103.6L108.6 104.2L107.9 104.4L104.2 105L100.4 104.2L99.8 104L95.2 103.4L92.6 102.8L94.4 102.6Z",
+  Leye:"M54 102.6L61.5 102.0L63.8 102.4L61 102.9L58.2 103.2L57.8 103.3L53.6 103.6L49.2 103L48.7 102.9L45.5 102.4L40.7 101.5L45 101.3Z",
 }
 const blinkOpen = {
   Reye:"M104.6 97.5L112.5 98.3L118.6 102.4L111.9 100.6L108.8 100.4L108 103.5L104.4 105L100.6 103.4L100 100.4L95.4 101.3L92.8 102.9L94.5 100.3Z",
@@ -104,14 +104,48 @@ export default function Home() {
         setLeye(blinkOpen.Leye)
     },300);
   }
+ 
   const[once,setOnce] = useState(true)
-  //if(once){setInterval(() => {blink()}, 4000);setOnce(false)}
 
-  function eyesMove (moveX,moveY){
-    const xs = [58.4,57.9,53.8,49.4,48.9,54.1,104.6,108.8,108,104.4,100.6,100]
-    const ys = [97.3,100.3,99.9,97.5,100.4,100.4]
-    const sys = [102.9,104.4,102.8,103.5,105,103.4]
-    const sys2 = [99.7,100.6,99.8,98.6,98.3,100.6,101.3,100.3]
+  if(once){
+    setInterval(() => {blink()}, 4000);
+    setOnce(false)
+  }
+
+  function findCenter(rect){
+    const x = ((rect.right-rect.left)/2)+rect.left
+    const y = ((rect.bottom-rect.top)/2)+rect.top
+    return ({
+      x:x,
+      y:y
+    })
+  } 
+  
+  function Pos2Pers(center,mX,mY){
+    const width = window.innerWidth
+    const height = window.innerHeight
+    let x;
+    let y;
+    if(mX>center.x){
+      x = (mX-center.x)/(width-center.x)
+    }else{
+      x= (center.x-mX)/center.x*-1
+    }
+    if(mY>center.y){
+      y = (mY-center.y)/(height-center.y)
+    }else{
+      y= (center.y-mY)/center.y*-1
+    }
+    return({x:x,y:y})
+  }
+
+  function rightEyeMove (move){
+    const moveX = move.x*3
+    const moveY = move.y*2
+    const xs = [104.6,108.8,108,104.4,100.6,100]
+    const ys = [97.5,100.4,100.4]
+    const sys = [103.5,105,103.4]
+    const sys2 = [98.3,100.6,101.3,100.3]
     for(let i=0;i<xs.length;i++){
       xs[i] = xs[i] + moveX 
     }
@@ -119,15 +153,35 @@ export default function Home() {
       ys[i] = ys[i] + moveY 
     }
     for(let i=0;i<sys.length;i++){
-      sys[i] = sys[i] + moveY 
+      if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
     }
     for(let i=0;i<sys2.length;i++){
       if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
     }
-    let LeyeD = `M${xs[5]} ${ys[0]}L61.7 ${sys2[0]}L63.9 102.4L61.1 ${sys2[1]}L${xs[0]} ${ys[1]}L${xs[1]} ${sys[0]}L${xs[2]} ${sys[1]}L${xs[3]} ${sys[2]}L${xs[4]} ${ys[2]}L45.6 ${sys2[2]}L40.8 101.6L45.2 ${sys2[3]}Z`
-    setLeye(LeyeD)
-    let ReyeD = `M${xs[6]} ${ys[3]}L112.5 ${sys2[4]}L118.6 102.4L111.9 ${sys2[5]}L${xs[7]} ${ys[4]}L${xs[8]} ${sys[3]}L${xs[9]} ${sys[4]}L${xs[10]} ${sys[5]}L${xs[11]} ${ys[5]}L95.4 ${sys2[6]}L92.8 102.9L94.5 ${sys2[7]}Z`
+    const ReyeD = `M${xs[0]} ${ys[0]}L112.5 ${sys2[0]}L118.6 102.4L111.9 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L95.4 ${sys2[2]}L92.8 102.9L94.5 ${sys2[3]}Z`
     setReye(ReyeD)
+  }
+  function leftEyeMove (move){
+    const moveX = move.x*3
+    const moveY = move.y*2
+    const xs = [54.1,58.4,57.9,53.8,49.4,48.9]
+    const ys = [97.3,100.3,99.9]
+    const sys = [102.9,104.4,102.8]
+    const sys2 = [99.7,100.6,99.8,98.6]
+    for(let i=0;i<xs.length;i++){
+      xs[i] = xs[i] + moveX 
+    }
+    for(let i=0;i<ys.length;i++){
+      ys[i] = ys[i] + moveY 
+    }
+    for(let i=0;i<sys.length;i++){
+      if(moveY>1){sys[i] = sys[i] + 1}else{sys[i] = sys[i] + moveY}
+    }
+    for(let i=0;i<sys2.length;i++){
+      if(moveY<0){sys2[i] = sys2[i] + (moveY/2)}else{sys2[i] = sys2[i] + moveY}
+    }
+    const LeyeD = `M${xs[0]} ${ys[0]}L61.7 ${sys2[0]}L63.9 102.4L61.1 ${sys2[1]}L${xs[1]} ${ys[1]}L${xs[2]} ${sys[0]}L${xs[3]} ${sys[1]}L${xs[4]} ${sys[2]}L${xs[5]} ${ys[2]}L45.6 ${sys2[2]}L40.8 101.6L45.2 ${sys2[3]}Z`
+    setLeye(LeyeD)
   }
   const [ReyeOp,setReyeOp] = useState(true)
 
@@ -150,7 +204,23 @@ export default function Home() {
   const [LeyeB,setLeyeB] = useState("M30.3 97.9L39.4 85.7L65.2 91.2L71.9 99.1L63.7 96.3L40.4 93.1L30.3 97.9Z")
 
   const size = winWidth();
-  if(size != undefined){document.documentElement.style.setProperty('--vw',size)}
+  if(size != undefined){
+    document.documentElement.style.setProperty('--vw',size)
+    const leftEye = document.querySelector('#leftEye')
+    const rightEye = document.querySelector('#rightEye')
+    window.addEventListener('mousemove',(event)=>{
+      if(ReyeOp == true){
+        const mouseX = event.pageX
+        const mouseY = event.pageY
+        const leftEyeC = findCenter(leftEye.getBoundingClientRect())
+        const rightEyeC = findCenter(rightEye.getBoundingClientRect())
+        const moveRightEye = Pos2Pers(rightEyeC,mouseX,mouseY)
+        const moveLeftEye = Pos2Pers(leftEyeC,mouseX,mouseY)
+        leftEyeMove(moveLeftEye)
+        rightEyeMove(moveRightEye)
+      }
+    })
+  }
   
   return (
     <main id="content">
@@ -159,7 +229,7 @@ export default function Home() {
         <link rel="icon" href="/SavesDesignFavicon.png" />
       </Head>
         <section>
-          <svg onMouseEnter={()=>{eyesMove (0,2);setReyeOp(false)}} onMouseLeave={()=>{eyesMove (0,0);setReyeOp(true)}} role="img" aria-label="Save" style={{height:600}} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg onMouseEnter={()=>{expr(quEx);setReyeOp(false)}} onMouseLeave={()=>{expr(normEx);setReyeOp(true)}} role="img" aria-label="Save" style={{height:200}} viewBox="0 0 149 203" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fill="var(--md50)">
               <path d={LeyeSh}/>
               <path d={Rshadow}/>
@@ -173,8 +243,8 @@ export default function Home() {
               <path d={hair}/>
               <path d={Lnosed}/>
               <path d={Rnosed}/>
-              <path d={Reye}/>
-              <path d={Leye}/>
+              <path id="rightEye" d={Reye}/>
+              <path id="leftEye" d={Leye}/>
               <path d={mustch}/>
               <path d={ReyeB}/>
               <path d={LeyeB}/>
