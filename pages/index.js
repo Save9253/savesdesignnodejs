@@ -298,6 +298,7 @@ export default function Home() {
         <p><b>Email Save</b></p>
         <a href="mailto:contact.saves.design@gmail.com">contact.saves.design@gmail.com</a>
       </div>
+      
     </main>
   )
 }
